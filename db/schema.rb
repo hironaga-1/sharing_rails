@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2023_08_11_092952) do
     t.bigint "user_id", null: false
     t.json "images", default: {}, null: false
     t.bigint "item_category_id", null: false
-    t.bigint "item_condition_id"
+    t.bigint "item_condition_id", null: false
     t.string "name", null: false
     t.text "description", null: false
     t.bigint "shipping_payer_type_id", null: false
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2023_08_11_092952) do
   end
 
   add_foreign_key "items", "item_categories"
+  add_foreign_key "items", "item_conditions"
   add_foreign_key "items", "prefectures"
   add_foreign_key "items", "shipping_day_types"
   add_foreign_key "items", "shipping_payer_types"

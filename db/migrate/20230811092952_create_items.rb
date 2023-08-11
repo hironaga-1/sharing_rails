@@ -4,7 +4,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.references :user, null: false, foreign_key: true
       t.json :images, null: false, default: {}
       t.references :item_category, null: false, foreign_key: true
-      t.references :item_condition
+      t.references :item_condition, null: false, foreign_key: true
       t.string :name, null: false
       t.text :description, null: false
       t.references :shipping_payer_type, null: false, foreign_key: true
