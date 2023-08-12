@@ -2,6 +2,8 @@ class ShippingAddress < ApplicationRecord
   belongs_to :user
   belongs_to :prefecture
 
+  has_one :current_shipping_address, dependent: :destroy
+
   ZENKAKU_REGEXP = /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/
   ZENKAKU_KANA_REGEXP = /\A[ァ-ヶー－]+\z/
 
