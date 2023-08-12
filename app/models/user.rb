@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :shipping_addresses, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   enum gender: {
     unanswered: 0,
