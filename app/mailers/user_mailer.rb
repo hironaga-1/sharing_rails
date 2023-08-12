@@ -39,4 +39,11 @@ class UserMailer < ApplicationMailer
     mail to: order.item.user.email,
          subject: "【URIKAI】#{order.user.nickname}さんの評価をお願いします"
   end
+
+  def notify_evaluation(order)
+    @order = order
+
+    mail to: order.user.email,
+         subject: "【URIKAI】#{order.user.nickname}さんがあなたを評価しました"
+  end
 end
