@@ -13,6 +13,9 @@ class User < ApplicationRecord
   before_validation :skip_confirmation!, if: :new_record?
   after_create :create_stripe_customer
 
+  EVALUATION_MAX_RATE = 5
+  EVALUATION_MINIMUM_RATE = 1
+
   has_one :user_information, dependent: :destroy
   has_one :user_mobile_phone, dependent: :destroy
   has_one :stripe_customer, dependent: :destroy
@@ -35,6 +38,22 @@ class User < ApplicationRecord
     def genders_i18n
       I18n.t("enums.user.gender")
     end
+  end
+
+  def evaluation_rate
+    evaluation_mappings = evaluations.each_with_object({ good: 0, bad: 0 }) do |evaluation, result|
+      result[:good] += 1 if evaluation.good?
+      result[:bad] += 1 unless evaluation.good?
+    end
+
+    evaluation_count = evaluation_mappings[:good] + evaluation_mappings[:bad]
+
+    good_total_point = evaluation_mappings[:good] * EVALUATION_MAX_RATE
+    bad_total_point = evaluation_mappings[:bad] * EVALUATION_MINIMUM_RATE
+
+    ((good_total_point + bad_total_point) / evaluation_count).round
+  rescue ZeroDivisionError
+    0
   end
 
   def evaluations
