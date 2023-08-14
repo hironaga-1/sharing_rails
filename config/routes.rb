@@ -55,7 +55,8 @@ Rails.application.routes.draw do
       get "completed" => "completed#index", as: :completed
     end
     resource :profile, only: %i[edit update]
-    resources :user_bank_accounts #, only: %i[index new create edit update]
+    resources :user_bank_accounts
+    resource :current_user_bank_account, only: %i[update]
   end
 
   resources :notifications, only: %i[index show]
