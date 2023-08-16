@@ -15,6 +15,8 @@ RUN apt-get update -qq && \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+RUN npm install n -g
+
 RUN mkdir /myapp
 WORKDIR /myapp
 

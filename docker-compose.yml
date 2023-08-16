@@ -20,6 +20,7 @@ services:
       - db
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpack-dev-server
+      NODE_OPTIONS: --openssl-legacy-provider
   tailwindcss-watch:
     image: mercari-clone:latest
     volumes:
