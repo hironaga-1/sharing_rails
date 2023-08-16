@@ -5,7 +5,7 @@ class UserMobilePhone < ApplicationRecord
 
   validates :number, presence: true
   validates :number, format: { with: MOBILE_PHONE_REGEXP }, allow_blank: true
-  validates :number, uniqueness: true
+  # validates :number, uniqueness: true
   validates :auth_code, presence: true
 
   before_validation :set_auth_code, if: :new_record?
