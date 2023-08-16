@@ -1,4 +1,4 @@
-class SessionController < ApplicationController
+class SessionsController < ApplicationController
     def create
         if @user.login
             redirect_to :root, notice: "ログインに成功しました"
